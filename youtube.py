@@ -12,11 +12,6 @@ creds = Credentials.from_authorized_user_file(TOKEN_FILE, SCOPES)
 youtube = build("youtube", "v3", credentials=creds)
 #--------------------
 
-
-
-
-
-
 #------test_fields------
 file = "testOutput/test.mp4"
 TESTPRIVACYSTATUS = "unlisted"
@@ -38,7 +33,20 @@ body=dict(
 
 #------------------------
 
+# def get_service():
+#     creds = None
+#     if os.path.exists(TOKEN_FILE):
+#         creds = Credentials.from_authorized_user_file(TOKEN_FILE, SCOPES)
+#     if not creds or not creds.valid:
+#         flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRETS_FILE, SCOPES)
+#         creds = flow.run_local_server(port=8080) 
+#         with open(TOKEN_FILE, "w") as f:
+#             f.write(creds.to_json())
+#     return build("youtube", "v3", credentials=creds)
+
 def ytRun():
+    #get_service()
+
     request = youtube.videos().insert(
         part=",".join(body.keys()),
         body=body,
